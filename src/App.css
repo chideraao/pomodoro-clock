@@ -9,10 +9,10 @@
 }
 
 :root {
-	--primary-color: #047aed;
-	--secondary-color: #1c3fa8;
-	--dark-color: #002240;
-	--light-color: #f4f4f4;
+	--primary-color: #14274e;
+	--secondary-color: #394867;
+	--dark-color: #9ba4b4;
+	--light-color: #f1f6f9;
 }
 
 * {
@@ -42,4 +42,8 @@
 	padding: 20px;
 	margin: 10px;
 	color: #333;
+}
+
+.icons {
+	display: flex;
 }
