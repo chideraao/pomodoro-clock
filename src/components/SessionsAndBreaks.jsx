@@ -14,11 +14,17 @@ function SessionsAndBreaks({
 			<div className="breaks">
 				<h2>Break Length</h2>
 				<div className="icons">
-					<FontAwesomeIcon onClick={incrementBreak} icon="arrow-up" size="3x" />
-					<h2>{breaks}</h2>
 					<FontAwesomeIcon
+						className={breaks < 2 ? "greyed-out" : ""}
 						onClick={decrementBreak}
 						icon="arrow-down"
+						size="3x"
+					/>
+					<h2>{breaks}</h2>
+					<FontAwesomeIcon
+						className={breaks > 19 ? "greyed-out" : ""}
+						onClick={incrementBreak}
+						icon="arrow-up"
 						size="3x"
 					/>
 				</div>
@@ -27,14 +33,16 @@ function SessionsAndBreaks({
 				<h2>Session Length</h2>
 				<div className="icons">
 					<FontAwesomeIcon
-						onClick={incrementSession}
-						icon="arrow-up"
+						className={sessions < 2 ? "greyed-out" : ""}
+						onClick={decrementSession}
+						icon="arrow-down"
 						size="3x"
 					/>
 					<h2>{sessions}</h2>
 					<FontAwesomeIcon
-						onClick={decrementSession}
-						icon="arrow-down"
+						className={sessions > 59 ? "greyed-out" : ""}
+						onClick={incrementSession}
+						icon="arrow-up"
 						size="3x"
 					/>
 				</div>

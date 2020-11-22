@@ -8,11 +8,13 @@ import {
 import { useState } from "react";
 import "./App.css";
 import SessionsAndBreaks from "./components/SessionsAndBreaks";
+import Timer from "./components/Timer";
 
 library.add(faCheckSquare, faCoffee, faArrowUp, faArrowDown);
 function App() {
 	const [breaks, setBreaks] = useState(5);
-	const [sessions, setSessions] = useState(25);
+	const [sessions, setSessions] = useState(11);
+	const [onSession, setOnSession] = useState(true);
 
 	const incrementSession = () => {
 		if (sessions <= 59) {
@@ -48,6 +50,7 @@ function App() {
 				decrementBreak={decrementBreak}
 				decrementSession={decrementSession}
 			/>
+			<Timer sessions={sessions} breaks={breaks} onSession={onSession} />
 		</div>
 	);
 }
