@@ -1,9 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-const Timer = ({ sessions, breaks, onSession }) => {
+const Timer = ({ sessions, breaks }) => {
 	const [minutes, setMinutes] = useState(sessions);
 	const [seconds, setSeconds] = useState(0);
+	const [onSession, setOnSession] = useState(true);
+
 	useEffect(() => {
 		let myInterval = setInterval(() => {
 			if (seconds > 0) {
@@ -12,6 +14,7 @@ const Timer = ({ sessions, breaks, onSession }) => {
 			if (seconds === 0) {
 				if (minutes === 0) {
 					clearInterval(myInterval);
+					setOnSession(false);
 				} else {
 					setMinutes(minutes - 1);
 					setSeconds(59);
