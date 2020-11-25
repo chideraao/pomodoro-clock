@@ -6,7 +6,7 @@ const Timer = ({ sessions, breaks }) => {
 	const [seconds, setSeconds] = useState(0);
 	const [onSession, setOnSession] = useState(true);
 
-	useEffect(() => {
+	const startCount = () => {
 		let myInterval = setInterval(() => {
 			if (seconds > 0) {
 				setSeconds(seconds - 1);
@@ -24,7 +24,15 @@ const Timer = ({ sessions, breaks }) => {
 		return () => {
 			clearInterval(myInterval);
 		};
-	});
+	};
+
+	const click_ref = React.useRef(null);
+
+	React.useEffect(() => {
+		startCount();
+		console.log("Updating click_ref...");
+		click_ref.current = startCount;
+	}, []);
 
 	return (
 		<div>
@@ -37,6 +45,7 @@ const Timer = ({ sessions, breaks }) => {
 					{seconds < 10 ? `0${seconds}` : seconds}
 				</h1>
 			)}
+			<button onClick={startCount}>Start</button>
 		</div>
 	);
 };
