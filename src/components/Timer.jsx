@@ -26,14 +26,6 @@ const Timer = ({ sessions, breaks }) => {
 		};
 	};
 
-	const click_ref = React.useRef(null);
-
-	React.useEffect(() => {
-		startCount();
-		console.log("Updating click_ref...");
-		click_ref.current = startCount;
-	}, []);
-
 	return (
 		<div>
 			<h2>{onSession ? "Session" : "Break"}</h2>
