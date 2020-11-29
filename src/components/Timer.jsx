@@ -10,13 +10,11 @@ const Timer = ({ sessions, breaks }) => {
 
 	let min = Math.floor(timeLeft / 60);
 	let sec = timeLeft - min * 60;
-	console.log(min);
-	console.log(sec);
 
 	const tick = () => {
 		setMinutes(min);
 		setTimeLeft(sec);
-		setTimeLeft(timeLeft - 1);
+		setTimeLeft((timeLeft) => timeLeft - 1);
 
 		if (sec < 10) {
 			setTimeLeft("0" + timeLeft);
@@ -28,11 +26,23 @@ const Timer = ({ sessions, breaks }) => {
 			clearInterval(intervalHandle);
 		}
 	};
+	console.log(minutes);
+	console.log(timeLeft);
 
 	const startCount = () => {
 		intervalHandle = setInterval(tick, 1000);
+		return clearInterval(tick);
 		/*let time = this.state.minutes;
-		this.secondsRemaining = time * 60;*/
+        this.secondsRemaining = time * 60;*/
+	};
+
+	const counter = () => {
+		if (timeLeft >= 0) setTimeLeft((timeLeft) => timeLeft - 1);
+	};
+
+	const decrement = () => {
+		setInterval(counter, 1000);
+		return clearInterval(counter);
 	};
 
 	return (
@@ -41,11 +51,11 @@ const Timer = ({ sessions, breaks }) => {
 
 			{minutes === 0 && timeLeft === 0 ? null : (
 				<h1>
-					{" "}
 					{min < 10 ? `0${min}` : min}:{sec < 10 ? `0${sec}` : sec}
 				</h1>
 			)}
 			<button onClick={startCount}>Start</button>
+			<button onClick={decrement}>decrementCount</button>
 		</div>
 	);
 };
