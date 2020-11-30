@@ -26,7 +26,6 @@ const Timer = ({ sessions, breaks }) => {
 			clearInterval(intervalHandle);
 		}
 	};
-	console.log(minutes);
 	console.log(timeLeft);
 
 	const startCount = () => {
@@ -36,13 +35,16 @@ const Timer = ({ sessions, breaks }) => {
         this.secondsRemaining = time * 60;*/
 	};
 
-	const counter = () => {
-		if (timeLeft >= 0) setTimeLeft((timeLeft) => timeLeft - 1);
-	};
-
 	const decrement = () => {
-		setInterval(counter, 1000);
-		return clearInterval(counter);
+		let interval;
+		if (timeLeft > 0) {
+			interval = setInterval(() => {
+				setTimeLeft((timeLeft) => timeLeft - 1);
+			}, 1000);
+		} else if (timeLeft === 0) {
+			clearInterval(interval);
+		}
+		return () => clearInterval(interval);
 	};
 
 	return (
